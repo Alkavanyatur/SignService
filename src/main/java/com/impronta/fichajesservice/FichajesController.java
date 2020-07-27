@@ -2,7 +2,10 @@ package com.impronta.fichajesservice;
 
 import javax.naming.InvalidNameException;
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -56,7 +59,8 @@ public class FichajesController {
 	/**
 	 * Metodo para firmar
 	 * */
-	@GetMapping("/sign")
+	@GetMapping(path="/sign", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public Respuesta fichar(Model model, @RequestParam("file") MultipartFile file) {
 
 		System.out.println("El archivo es "+file.getName());			
@@ -68,8 +72,13 @@ public class FichajesController {
 		try {
 
 			byte[] bytes = file.getBytes();
+			System.out.println("ENTRA PDFSignatureInfoParser");	
 			List<PDFSignatureInfo> info = PDFSignatureInfoParser.getPDFSignatureInfo(bytes);
-
+			System.out.println("FIN PDFSignatureInfoParser");
+			System.out.println("message" + "OK");
+			System.out.println("filename" + file.getOriginalFilename());
+			System.out.println("pdfSignatureInfo" + info);
+			
 			model.addAttribute("message", "OK");
 			model.addAttribute("filename", file.getOriginalFilename());
 			model.addAttribute("pdfSignatureInfo", info);
@@ -78,6 +87,7 @@ public class FichajesController {
 				| InvalidKeyException | SignatureException | NoSuchProviderException e) {
 			model.addAttribute("message", "Cannot open file: " + e.getMessage());
 			e.printStackTrace();
+			return new Respuesta("Error");
 		}
 
 		return new Respuesta("ok");
@@ -90,27 +100,20 @@ public class FichajesController {
 	@GetMapping(path = "/check", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Object usuarioGet(Model model, @RequestParam("file") MultipartFile file, HttpServletResponse response) {
 		
-		System.out.println("El archivo es "+file.getName());
-		
-		if (file.isEmpty()) {
+		try {
+			System.out.println("El archivo es "+file.getName());
+			
+			PDFCreateSignature pdfCreateSignature = new PDFCreateSignature();
+	
+			System.out.println("Ha firmado");
+			
+			byte[] respuesta = pdfCreateSignature.sign(file.getInputStream());
+			
+			System.out.println("Ha terminado");
+		} catch (IOException e) {
+			e.printStackTrace();
 			return new Respuesta("Error");
 		}
-
-		try {
-
-			byte[] bytes = file.getBytes();
-			List<PDFSignatureInfo> info = PDFSignatureInfoParser.getPDFSignatureInfo(bytes);
-
-			model.addAttribute("message", "OK");
-			model.addAttribute("filename", file.getOriginalFilename());
-			model.addAttribute("pdfSignatureInfo", info);
-
-		} catch (IOException | InvalidNameException | CertificateException | NoSuchAlgorithmException
-				| InvalidKeyException | SignatureException | NoSuchProviderException e) {
-			model.addAttribute("message", "Cannot open file: " + e.getMessage());
-			e.printStackTrace();
-		}
-
 		return new Respuesta("ok");
 
 	}

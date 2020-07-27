@@ -85,4 +85,6 @@
   <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/bouncycastle/bcprov-jdk15on/1.65/bcprov-jdk15on-1.65.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/bouncycastle/bcpkix-jdk15on/1.65/bcpkix-jdk15on-1.65.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/bouncycastle/bcmail-jdk15on/1.65/bcmail-jdk15on-1.65.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/ibm/icu/icu4j/3.8/icu4j-3.8.jar"/>
 </classpath>

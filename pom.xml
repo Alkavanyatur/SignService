@@ -46,9 +46,9 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
 
-        
+
+
 		<!-- LOMBOK -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -69,30 +69,46 @@
 			<version>${mapstruct.version}</version>
 		</dependency>
 
-		 <!-- GSON -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>${gson.version}</version>
-        </dependency>
+		<!-- GSON -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
 
-        <!-- PDFBOX -->
-        <dependency>
-            <groupId>org.apache.pdfbox</groupId>
-            <artifactId>pdfbox</artifactId>
-            <version>${pdfbox.version}</version>
-        </dependency>
-        <!-- BOUNCYCASTLE -->
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
-            <version>${bouncycastle.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk15on</artifactId>
-            <version>${bouncycastle.version}</version>
-        </dependency>
+		<!-- PDFBOX -->
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>${pdfbox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>fontbox</artifactId>
+			<version>${pdfbox.version}</version>
+		</dependency>
+		
+		<!-- BOUNCYCASTLE -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>${bouncycastle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcpkix-jdk15on</artifactId>
+			<version>${bouncycastle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcmail-jdk15on</artifactId>
+			<version>${bouncycastle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>icu4j</artifactId>
+			<version>3.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
